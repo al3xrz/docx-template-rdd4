@@ -56,7 +56,30 @@ namespace WindowsFormsApp1
 
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Акт_платный_WORD af = new Акт_платный_WORD();
 
+            List<Выполненная_услуга> услуги = new List<Выполненная_услуга>();
+            for (int i = 0; i <= 4; i++)
+            {
+                Выполненная_услуга у = new Выполненная_услуга();
+                у.наименование = $"Услуга{i}";
+                у.дата = new DateTime().Date;
+                у.комментарии = $"Комментарий {i}";
+                услуги.Add(у);
+            }
+
+
+            af.номеракта = "№1";
+            af.потребитель = "[ФИО пациента]";
+            af.услуги = услуги;
+
+            af.template_file = "templates\\акт_об_оказании_платных_услуг.docx";
+            af.output_file = "output\\акт_№1_платный.docx";
+
+            af.CreateFile();
+        }
     }
 
 }
